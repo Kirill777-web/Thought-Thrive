@@ -1,15 +1,51 @@
 <html lang='en'>
-
   <head>
     <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <title></title>
-    <link rel='stylesheet' href='/css/jass.css' />
-    <link rel='stylesheet' href='/css/style.css' />
+    <link
+      rel='icon'
+      type='image/png'
+      href='/Assets/chat-chat-svgrepo-com.svg'
+      sizes='128X128'
+    />
+    <title>ThoughtThrive</title>
+    <!-- Link to your CSS stylesheet -->
+    <link rel='stylesheet' href='/css/styles.css' />
   </head>
-
   <body>
+    <header>
+      <!-- Navigation bar -->
+      <nav>
+        {{#if logged_in}}
+          <!-- If the user is logged in, show the Dashboard, Profile, and Logout buttons -->
+          <a href='/mydashboard'>My-Dashboard</a>
+          <a href='/profile'>Profile</a>
+          <button id='logout' class='link-style'>Logout</button>
+        {{else}}
+          <!-- If the user is not logged in, show the Home, Login, and Register buttons -->
+          <a href='/'>Home</a>
+          <a href='/login?source=navbar'>Login</a>
+          <a href='http://localhost:3001/login?source=navbar'>Dashboard</a>
+        {{/if}}
+      </nav>
+    </header>
 
+    <!-- Introduction about the Blog -->
+    <section class='blog-intro'>
+      <h2>Welcome to ThoughtThrive Blog</h2>
+    </section>
+
+    <!-- Main content block where page-specific content will be injected -->
+    <main>
+      {{{body}}}
+    </main>
+
+    <footer class='footer'>
+      <p>© 2023 ThoughtThrive. All rights reserved.</p>
+    </footer>
+
+    <script src='/js/tabs.js'></script>
+    <script src='/js/logout.js'></script>
   </body>
-
 </html>

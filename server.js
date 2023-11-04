@@ -1,7 +1,8 @@
 // Import the express package
 const express = require('express');
 const app = express();
-
+// Import the method-override package to allow for HTTP PUT and DELETE requests
+const methodOverride = require('method-override');
 // Import the express-session package for session management
 const session = require('express-session');
 // Import the express-handlebars package for view rendering
@@ -9,7 +10,7 @@ const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
-
+const Handlebars = require('handlebars');
 // Import the path package to work with file and directory paths
 const path = require('path');
 // Define the routes by importing from the controllers directory
@@ -25,7 +26,7 @@ const PORT = process.env.PORT || 3001;
 // Session configuration object
 const sess = {
   // Secret key used to sign the session ID cookie
-  secret: '7537',
+  secret: process.env.SESSION_SECRET,
   // Cookie settings
   cookie: {
     maxAge: 300000, // Maximum age of the cookie
@@ -40,6 +41,9 @@ const sess = {
     db: sequelize,
   }),
 };
+Handlebars.registerHelper('eq', function (a, b) {
+  return a === b;
+});
 
 // Apply session middleware to the application
 app.use(session(sess));
@@ -51,15 +55,19 @@ app.set('view engine', 'handlebars');
 // Apply middleware for parsing JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Apply middleware for HTTP PUT and DELETE requests (before defining the routes)
+app.use(methodOverride('_method'));
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Define and use routes from the controllers directory
+// Define and use routes from the controllers directory (after methodOverride)
 app.use(routes);
 
 // Synchronize the Sequelize models with the database and start the server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
-    console.log(`App is listening at http://localhost:${PORT}!`)
+    console.log(`App is listening at http://localhost:${PORT}`)
   );
 });

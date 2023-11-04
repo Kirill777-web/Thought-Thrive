@@ -1,0 +1,93 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>My Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <!-- Header content (if any) -->
+    </header>
+
+    <main>
+      <section class='profile-info'>
+        <h2>Welcome, {{username}}!</h2>
+      </section>
+
+      <!-- Button to Create New Post -->
+      <section class='create-post-section'>
+        <button
+          id='btn-create-post'
+          class='btn btn-primary btn-create-post'
+          aria-label='Create New Post'
+        >
+          Create New Post
+        </button>
+      </section>
+
+      <!-- Create Post Form -->
+      <section
+        class='create-post-form'
+        style='display: none;'
+        id='createPostContainer'
+      >
+        <h3>Create New Post</h3>
+        <form id='createPostForm'>
+          <div>
+            <label for='newPostTitle'>Title:</label>
+            <input
+              type='text'
+              id='newPostTitle'
+              class='form-input'
+              required
+              aria-required='true'
+            />
+          </div>
+          <div>
+            <label for='newPostContent'>Content:</label>
+            <textarea
+              id='newPostContent'
+              class='form-input'
+              required
+              aria-required='true'
+            ></textarea>
+          </div>
+          <button type='submit' class='btn btn-primary'>Create Post</button>
+        </form>
+      </section>
+
+      <!-- User Posts Section -->
+      <section class='user-posts'>
+        <h3>Your Posts:</h3>
+        <!-- Displaying posts -->
+        {{#each posts}}
+          <div class='post' data-post-id='{{this.id}}'>
+            <h2 class='post-title'>{{this.title}}</h2>
+            <div class='post-content show'>
+              {{this.content}}
+            </div>
+            <p>Posted by
+              {{this.user.username}}
+              on
+              {{format_date this.date_created}}</p>
+            <button
+              class='btn btn-primary edit-btn'
+              data-edit-id='{{this.id}}'
+            >Update</button>
+            <button
+              class='btn btn-primary btn-delete-post'
+              data-delete-id='{{this.id}}'
+              aria-label='Delete {{this.title}}'
+            >Delete</button>
+
+          </div>
+        {{/each}}
+      </section>
+    </main>
+
+    <footer class='footer'>
+      <!-- Footer content -->
+    </footer>
+
+    <script src='/js/profile.js'></script>
+  </body>
+</html>

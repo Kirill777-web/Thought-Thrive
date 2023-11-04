@@ -1,0 +1,78 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>My Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <!-- Your header content here -->
+    </header>
+
+    <main>
+      <!-- Displaying posts -->
+      {{#each posts}}
+        <div class='post' data-post-id='{{this.id}}'>
+          <h2 class='post-title'>{{this.title}}</h2>
+          <p class='post-info'>Posted by
+            {{this.user.username}}
+            on
+            {{format_date this.date_created}}</p>
+          <div class='post-content'>{{this.content}}</div>
+
+          <!-- Comments Section -->
+          <div class='comments-section'>
+            <!-- Existing comments -->
+            <div class='existing-comments'>
+              {{#each this.comments}}
+                <div class='comment'>
+                  <p>commented by
+                    {{this.user.username}}
+                    -
+                    <strong class='commentsh3'>{{content}}</strong></p>
+                </div>
+              {{/each}}
+            </div>
+
+            <!-- Container for new comments to be appended -->
+            <div class='new-comments-container'></div>
+
+            {{! Test toggle comments }}
+            <div class='comments-wrapper'>
+              <!-- Collapsible Comments Trigger -->
+              <button class='btn toggle-comments'>Add the comments</button>
+
+              <!-- Comments Section, initially hidden -->
+              <div class='comments-section' style='display:none;'>
+                <!-- Existing comments here -->
+                <!-- ... -->
+
+                <!-- Comment Form Section -->
+                <section class='comment-form-section'>
+                  <h3>Add a Comment:</h3>
+                  <form class='createCommentForm'>
+                    <div>
+                      <label for='commentContent'>Comment:</label>
+                      <textarea
+                        id='commentContent'
+                        class='form-input'
+                        required
+                      ></textarea>
+                    </div>
+                    <button type='submit' class='btn btn-primary'>Submit Comment</button>
+                  </form>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+      {{/each}}
+    </main>
+
+    <footer class='footer'>
+      <!-- Footer content -->
+    </footer>
+
+    <script src='/js/addComments.js'></script>
+  </body>
+</html>
