@@ -48,7 +48,7 @@ To install Blog App, follow these steps:
 
 - Users: **(passwords already hashed in db!)**
 - 1 | AliceTech | techlover123 |
-- 2 | BobCoder | codeMaster456
+- 2 | BobCoder | codeMaster456 |
 
 6. Configure environment variables
    Create a .env file in the root directory and define next
@@ -72,11 +72,13 @@ To use My Blog App
 
 ## 🔗 Links
 
-- This is the link of my [GitHub repository]()
-- Link to the Heroku [Heroku]()
-- The following screenshot of the app ![ThoughtThrive]()
-- The following screenshot of the app show profile page ![ThoughtThrive]()
-- The following screenshot of the app show mydashboard (comments) page ![ThoughtThrive]()
+- This is the link of my [GitHub repository](https://github.com/Kirill777-web/Thought-Thrive)
+- Link to the Heroku [Heroku](https://thought-thrive-b10edf1a6c47.herokuapp.com/login?source=post&postid=1)
+- The following screenshot of the app home page ![Thought-Thrive](/img/homepage.png)
+- The following screenshot of the app login page ![Thought-Thrive](/img/loginpage.png)
+- The following screenshot of the app show profile page ![Thought-Thrive](/img/profile%20page.png)
+- The following screenshot of the app show mydashboard (comments) page ![Thought-Thrive](/img/mydashboard.png)
+- The following screenshot of the app show mydashboard created test post added comments ![Thought-Thrive](/img/testapp.png)
 
 ## 🙏 Credits
 
